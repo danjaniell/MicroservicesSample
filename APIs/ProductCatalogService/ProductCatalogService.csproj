@@ -17,5 +17,9 @@
     <PackageReference Include="Scalar.AspNetCore" Version="2.4.13" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\SharedContracts\SharedContracts.csproj" />
+  </ItemGroup>
+
 
 </Project>

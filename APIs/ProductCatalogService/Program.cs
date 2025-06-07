@@ -33,7 +33,6 @@ app.UseSerilogRequestLogging();
 
 app.MapControllers();
 
-// Add health check endpoint
 app.MapHealthChecks("/health");
 
 if (app.Environment.IsDevelopment())

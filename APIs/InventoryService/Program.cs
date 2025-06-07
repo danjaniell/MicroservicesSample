@@ -15,7 +15,7 @@ builder.Host.UseSerilog();
 
 builder.Services.AddHealthChecks();
 
-builder.Services.AddMemoryCache();
+builder.Services.AddMemoryCacheWithFakes();
 
 builder.Services.AddOpenApi();
 

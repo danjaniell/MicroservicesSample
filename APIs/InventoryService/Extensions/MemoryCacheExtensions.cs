@@ -34,7 +34,6 @@ public static class MemoryCacheExtensions
     {
         private readonly IMemoryCache _cache = cache ?? throw new ArgumentNullException(nameof(cache));
         private readonly ILogger<CacheInitializationService> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        private const string CacheKey = "InventoryItems";
 
         public Task StartAsync(CancellationToken cancellationToken)
         {

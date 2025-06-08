@@ -18,7 +18,7 @@ public static class StartupExtensions
     /// <param name="configuration">The application configuration.</param>
     public static IServiceCollection AddInventoryServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton<IInventoryRepository, InventoryRepository>();
+        services.AddScoped<IInventoryRepository, InventoryRepository>();
         services.AddScoped<IInventoryService, Inventories.Services.InventoryService>();
 
         return services;
@@ -65,15 +65,18 @@ public static class StartupExtensions
     this WebApplication app,
     RouteGroupBuilder? routeGroupBuilder = null)
     {
-        IEnumerable<IEndpoint> endpoints = app.Services
-            .GetRequiredService<IEnumerable<IEndpoint>>();
-
-        IEndpointRouteBuilder builder =
-            routeGroupBuilder is null ? app : routeGroupBuilder;
-
-        foreach (IEndpoint endpoint in endpoints)
+        using (var scope = app.Services.CreateScope())
         {
-            endpoint.MapEndpoint(builder);
+            IEnumerable<IEndpoint> endpoints = scope.ServiceProvider
+                .GetRequiredService<IEnumerable<IEndpoint>>();
+
+            IEndpointRouteBuilder builder =
+                routeGroupBuilder is null ? app : routeGroupBuilder;
+
+            foreach (IEndpoint endpoint in endpoints)
+            {
+                endpoint.MapEndpoint(builder);
+            }
         }
 
         return app;

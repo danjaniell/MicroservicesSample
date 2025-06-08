@@ -1,14 +1,11 @@
-﻿
-using InventoryService.Features.Inventories.Controllers;
-using InventoryService.Features.Inventories.Queries;
+﻿using InventoryService.Features.Inventories.Queries;
 using InventoryService.Features.Inventories.Services;
-using Microsoft.AspNetCore.Mvc;
 using SharedContracts.Contracts;
 using System.Net;
 
 namespace InventoryService.Features.Inventories.Endpoints;
 
-public class GetInventoryById(IInventoryService inventoryService, ILogger<InventoriesController> logger) : IEndpoint
+public class GetInventoryById(IInventoryService inventoryService, ILogger<GetInventoryById> logger) : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {

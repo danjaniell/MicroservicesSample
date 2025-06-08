@@ -3,7 +3,7 @@
     {
       "UpstreamPathTemplate": "/api/inventories",
       "UpstreamHttpMethod": [ "GET" ],
-      "DownstreamPathTemplate": "/api/inventories",
+      "DownstreamPathTemplate": "/api/v1/inventories",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -15,7 +15,7 @@
     {
       "UpstreamPathTemplate": "/api/inventories/{productId}",
       "UpstreamHttpMethod": [ "GET", "DELETE" ],
-      "DownstreamPathTemplate": "/api/products/{productId}",
+      "DownstreamPathTemplate": "/api/v1/products/{productId}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -27,7 +27,7 @@
     {
       "UpstreamPathTemplate": "/api/inventories",
       "UpstreamHttpMethod": [ "POST", "PUT" ],
-      "DownstreamPathTemplate": "/api/inventories",
+      "DownstreamPathTemplate": "/api/v1/inventories",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -39,7 +39,7 @@
     {
       "UpstreamPathTemplate": "/api/products",
       "UpstreamHttpMethod": [ "GET", "POST" ],
-      "DownstreamPathTemplate": "/api/products",
+      "DownstreamPathTemplate": "/api/v1/products",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -51,7 +51,7 @@
     {
       "UpstreamPathTemplate": "/api/products/{id}",
       "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
-      "DownstreamPathTemplate": "/api/products/{id}",
+      "DownstreamPathTemplate": "/api/v1/products/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {

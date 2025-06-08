@@ -2,7 +2,7 @@
   "Routes": [
     {
       "UpstreamPathTemplate": "/api/inventories",
-      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
       "DownstreamPathTemplate": "/api/v1/inventories",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -10,7 +10,10 @@
           "Host": "localhost",
           "Port": 5105
         }
-      ]
+      ],
+      "RouteIsCaseSensitive": false,
+      "Timeout": 10000,
+      "Priority": 1
     },
     {
       "UpstreamPathTemplate": "/api/inventories/{productId}",
@@ -22,19 +25,10 @@
           "Host": "localhost",
           "Port": 5105
         }
-      ]
-    },
-    {
-      "UpstreamPathTemplate": "/api/inventories",
-      "UpstreamHttpMethod": [ "POST", "PUT" ],
-      "DownstreamPathTemplate": "/api/v1/inventories",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5105
-        }
-      ]
+      ],
+      "RouteIsCaseSensitive": false,
+      "Timeout": 10000,
+      "Priority": 1
     },
     {
       "UpstreamPathTemplate": "/api/products",
@@ -46,7 +40,10 @@
           "Host": "localhost",
           "Port": 5106
         }
-      ]
+      ],
+      "RouteIsCaseSensitive": false,
+      "Timeout": 10000,
+      "Priority": 1
     },
     {
       "UpstreamPathTemplate": "/api/products/{id}",
@@ -58,7 +55,10 @@
           "Host": "localhost",
           "Port": 5106
         }
-      ]
+      ],
+      "RouteIsCaseSensitive": false,
+      "Timeout": 10000,
+      "Priority": 1
     },
     {
       "UpstreamPathTemplate": "/health/inventory",
@@ -70,7 +70,9 @@
           "Host": "localhost",
           "Port": 5105
         }
-      ]
+      ],
+      "RouteIsCaseSensitive": false,
+      "Timeout": 5000
     },
     {
       "UpstreamPathTemplate": "/health/catalog",
@@ -82,10 +84,36 @@
           "Host": "localhost",
           "Port": 5106
         }
-      ]
+      ],
+      "RouteIsCaseSensitive": false,
+      "Timeout": 5000
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:5165"
+    "BaseUrl": "http://localhost:5165",
+    "QoSOptions": {
+      "Timeout": 15000,
+      "ExceptionsAllowedBeforeBreaking": 5,
+      "DurationOfBreak": 5000,
+      "TimeoutValueAllowedToCircuitBreaker": 3000
+    },
+    "RateLimitOptions": {
+      "ClientWhitelist": [],
+      "EnableRateLimiting": true,
+      "Period": "1s",
+      "PeriodTimespan": 1,
+      "Limit": 50,
+      "QuotaExceededMessage": "API rate limit exceeded. Please try again later.",
+      "HttpStatusCode": 429
+    },
+    "FileCacheOptions": {
+      "TtlSeconds": 300,
+      "Region": "DefaultCache"
+    },
+    "LoadBalancerOptions": {
+      "Type": "LeastRequests",
+      "Key": null,
+      "Expiry": 0
+    }
   }
 }

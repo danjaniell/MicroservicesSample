@@ -15,45 +15,6 @@ namespace InventoryService.Features.Inventories.Controllers;
 [Route("api/inventories")]
 public sealed class InventoriesController(IInventoryService inventoryService, ILogger<InventoriesController> logger) : ControllerBase
 {
-    /// <summary>
-    /// Gets an inventory item by its product ID.
-    /// </summary>
-    /// <param name="productId">The ID of the product.</param>
-    /// <returns>An inventory DTO.</returns>
-    [HttpGet("{productId:guid}")]
-    [ProducesResponseType(typeof(InventoryDto), (int)HttpStatusCode.OK)]
-    [ProducesResponseType((int)HttpStatusCode.NotFound)]
-    public async Task<ActionResult<InventoryDto>> GetInventoryById(Guid productId)
-    {
-        logger.LogInformation("Attempting to retrieve inventory for product ID: {ProductId}", productId);
-        var query = new GetInventoryByIdQuery(productId);
-        var result = await inventoryService.GetInventoryByIdAsync(query);
-
-        if (result == null)
-        {
-            logger.LogWarning("Inventory for product ID {ProductId} not found.", productId);
-            return NotFound();
-        }
-
-        logger.LogInformation("Successfully retrieved inventory for product ID: {ProductId}", productId);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Gets all inventory items.
-    /// </summary>
-    /// <returns>A list of inventory DTOs.</returns>
-    [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<InventoryDto>), (int)HttpStatusCode.OK)]
-    public async Task<ActionResult<IEnumerable<InventoryDto>>> GetAllInventories()
-    {
-        logger.LogInformation("Attempting to retrieve all inventories.");
-        var query = new GetAllInventoriesQuery();
-        var result = await inventoryService.GetAllInventoriesAsync(query);
-
-        logger.LogInformation("Successfully retrieved {Count} inventory items.", result.Count);
-        return Ok(result);
-    }
 
     /// <summary>
     /// Creates a new inventory item.

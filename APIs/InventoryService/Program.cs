@@ -76,7 +76,7 @@ ApiVersionSet apiVersionSet = app.NewApiVersionSet()
 RouteGroupBuilder versionedGroup = app
     .MapGroup("api/v{version:apiVersion}/inventories")
     .WithApiVersionSet(apiVersionSet)
-    .WithTags("Inventory");
+    .WithTags("Inventories");
 
 app.MapEndpoints(versionedGroup);
 

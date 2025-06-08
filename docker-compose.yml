@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: ApiGateway/OcelotApiGateway/Dockerfile
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Docker
     ports:
       - "5165:5165"
     depends_on:
@@ -18,7 +18,7 @@ services:
       context: .
       dockerfile: APIs/InventoryService/Dockerfile
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Docker
     ports:
       - "5105:5105"
     networks:
@@ -29,7 +29,7 @@ services:
       context: .
       dockerfile: APIs/ProductCatalogService/Dockerfile
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Docker
     ports:
       - "5106:5106"
     networks:

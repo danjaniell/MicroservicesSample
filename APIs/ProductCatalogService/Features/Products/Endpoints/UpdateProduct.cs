@@ -1,4 +1,5 @@
 using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Http.HttpResults;
 using ProductCatalogService.Features.Products.Commands;
 using ProductCatalogService.Features.Products.Services;
@@ -34,7 +35,7 @@ public class UpdateProduct(IProductService productService, ILogger<UpdateProduct
             })
             .Produces<ProductDto>((int)HttpStatusCode.OK)
             .Produces<string>((int)HttpStatusCode.NotFound)
-            .Produces<IEnumerable<FluentValidation.Results.ValidationFailure>>((int)HttpStatusCode.BadRequest)
+            .Produces<IEnumerable<ValidationFailure>>((int)HttpStatusCode.BadRequest)
             .WithSummary("Update Product");
     }
 }

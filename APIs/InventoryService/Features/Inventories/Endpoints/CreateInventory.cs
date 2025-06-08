@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using InventoryService.Features.Inventories.Commands;
 using InventoryService.Features.Inventories.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Models;
 using SharedContracts.Contracts;
 using System.Net;
 
@@ -34,7 +34,7 @@ public class CreateInventory(IInventoryService inventoryService, ILogger<CreateI
                 }
             })
             .Produces((int)HttpStatusCode.Created, typeof(InventoryDto))
-            .Produces((int)HttpStatusCode.BadRequest)
+            .Produces<IEnumerable<ValidationFailure>>((int)HttpStatusCode.BadRequest)
             .Produces((int)HttpStatusCode.Conflict)
             .WithSummary("Create Inventory");
     }

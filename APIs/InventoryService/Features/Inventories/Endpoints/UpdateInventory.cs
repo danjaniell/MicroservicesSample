@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using InventoryService.Features.Inventories.Commands;
 using InventoryService.Features.Inventories.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +34,7 @@ public class UpdateInventory(IInventoryService inventoryService, ILogger<UpdateI
                 }
             })
             .Produces((int)HttpStatusCode.OK, typeof(InventoryDto))
-            .Produces((int)HttpStatusCode.BadRequest)
+            .Produces<IEnumerable<ValidationFailure>>((int)HttpStatusCode.BadRequest)
             .Produces((int)HttpStatusCode.NotFound)
             .WithSummary("Update Inventory");
     }

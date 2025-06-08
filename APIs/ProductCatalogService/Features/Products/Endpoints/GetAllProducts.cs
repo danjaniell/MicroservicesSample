@@ -9,7 +9,7 @@ public class GetAllProducts(IProductService productService, ILogger<GetAllProduc
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("api/products", async () =>
+        app.MapGet("", async () =>
             {
                 logger.LogInformation("Attempting to retrieve all products.");
                 var query = new GetAllProductsQuery();

@@ -12,7 +12,7 @@ public class UpdateProduct(IProductService productService, ILogger<UpdateProduct
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPut("api/products", async Task<Results<Ok<ProductDto>, NotFound<string>, BadRequest<IEnumerable<FluentValidation.Results.ValidationFailure>>, BadRequest<string>>> (UpdateProductCommand request) =>
+        app.MapPut("", async Task<Results<Ok<ProductDto>, NotFound<string>, BadRequest<IEnumerable<FluentValidation.Results.ValidationFailure>>, BadRequest<string>>> (UpdateProductCommand request) =>
             {
                 logger.LogInformation("Attempting to update product with ID: {ProductId}", request.Id);
 

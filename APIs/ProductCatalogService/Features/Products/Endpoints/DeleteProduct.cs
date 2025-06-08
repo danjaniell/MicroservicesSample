@@ -9,7 +9,7 @@ public class DeleteProduct(IProductService productService, ILogger<DeleteProduct
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapDelete("api/products/{id:guid}", async Task<Results<NoContent, NotFound<string>>> (Guid id) =>
+        app.MapDelete("{id:guid}", async Task<Results<NoContent, NotFound<string>>> (Guid id) =>
             {
                 logger.LogInformation("Attempting to delete product with ID: {ProductId}", id);
                 var command = new DeleteProductCommand(id);

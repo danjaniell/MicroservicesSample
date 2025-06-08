@@ -5,11 +5,11 @@ using System.Net;
 
 namespace ProductCatalogService.Features.Products.Endpoints;
 
-public class GetProductById(IProductService productService, ILogger<GetProductById> logger) : IEndpoint
+public class GetProduct(IProductService productService, ILogger<GetProduct> logger) : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("api/products/{id:guid}", async (Guid id) =>
+        app.MapGet("{id:guid}", async (Guid id) =>
             {
                 logger.LogInformation("Attempting to retrieve product with ID: {ProductId}", id);
                 var query = new GetProductByIdQuery(id);

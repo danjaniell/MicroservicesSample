@@ -12,7 +12,7 @@ public class CreateProduct(IProductService productService, ILogger<CreateProduct
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPost("api/products", async Task<Results<Created<ProductDto>, Conflict<string>, BadRequest<IEnumerable<FluentValidation.Results.ValidationFailure>>>> (CreateProductCommand request) =>
+        app.MapPost("", async Task<Results<Created<ProductDto>, Conflict<string>, BadRequest<IEnumerable<FluentValidation.Results.ValidationFailure>>>> (CreateProductCommand request) =>
             {
                 logger.LogInformation("Attempting to create product: {ProductName}", request.Name);
 

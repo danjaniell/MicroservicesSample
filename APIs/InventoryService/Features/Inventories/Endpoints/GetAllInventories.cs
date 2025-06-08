@@ -18,6 +18,7 @@ public class GetAllInventories(IInventoryService inventoryService, ILogger<GetAl
                 logger.LogInformation("Successfully retrieved {Count} inventory items.", result.Count);
                 return Results.Ok(result);
             })
-            .Produces((int)HttpStatusCode.OK, typeof(IEnumerable<InventoryDto>));
+            .Produces((int)HttpStatusCode.OK, typeof(IEnumerable<InventoryDto>))
+            .WithSummary("Get All Inventory");
     }
 }

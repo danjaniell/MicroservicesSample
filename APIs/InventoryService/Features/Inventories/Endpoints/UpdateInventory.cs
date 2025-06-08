@@ -34,6 +34,7 @@ public class UpdateInventory(IInventoryService inventoryService, ILogger<UpdateI
             })
             .Produces((int)HttpStatusCode.OK, typeof(InventoryDto))
             .Produces((int)HttpStatusCode.BadRequest)
-            .Produces((int)HttpStatusCode.NotFound);
+            .Produces((int)HttpStatusCode.NotFound)
+            .WithSummary("Update Inventory");
     }
 }

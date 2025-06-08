@@ -36,11 +36,6 @@ public class CreateInventory(IInventoryService inventoryService, ILogger<CreateI
             .Produces((int)HttpStatusCode.Created, typeof(InventoryDto))
             .Produces((int)HttpStatusCode.BadRequest)
             .Produces((int)HttpStatusCode.Conflict)
-            .WithOpenApi(operation => new OpenApiOperation
-            {
-                Summary = "Create Inventory",
-                OperationId = "CreateInventory",
-                Description = "Creates a new inventory record."
-            });
+            .WithSummary("Create Inventory");
     }
 }

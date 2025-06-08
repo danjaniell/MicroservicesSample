@@ -26,6 +26,7 @@ public class DeleteInventory(IInventoryService inventoryService, ILogger<DeleteI
                 }
             })
             .Produces((int)HttpStatusCode.NoContent)
-            .Produces((int)HttpStatusCode.NotFound);
+            .Produces((int)HttpStatusCode.NotFound)
+            .WithSummary("Delete Inventory");
     }
 }

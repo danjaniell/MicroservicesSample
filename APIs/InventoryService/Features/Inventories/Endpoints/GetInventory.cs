@@ -5,7 +5,7 @@ using System.Net;
 
 namespace InventoryService.Features.Inventories.Endpoints;
 
-public class GetInventoryById(IInventoryService inventoryService, ILogger<GetInventoryById> logger) : IEndpoint
+public class GetInventory(IInventoryService inventoryService, ILogger<GetInventory> logger) : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
@@ -25,6 +25,7 @@ public class GetInventoryById(IInventoryService inventoryService, ILogger<GetInv
                 return Results.Ok(result);
             })
             .Produces((int)HttpStatusCode.OK, typeof(InventoryDto))
-            .Produces((int)HttpStatusCode.NotFound);
+            .Produces((int)HttpStatusCode.NotFound)
+            .WithSummary("Get Inventory");
     }
 }

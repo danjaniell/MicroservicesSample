@@ -1,0 +1,6 @@
+[submodule "APIs/InventoryService"]
+	path = APIs/InventoryService
+	url = https://github.com/danjaniell/InventoryService.git
+[submodule "APIs/ProductCatalogService"]
+	path = APIs/ProductCatalogService
+	url = https://github.com/danjaniell/ProductCatalogService.git

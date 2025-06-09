@@ -10,7 +10,9 @@ MicroservicesSample/
 │   ├── InventoryService/       # Inventory management microservice
 │   ├── ProductCatalogService/  # Product catalog microservice
 │   └── Shared/                 # Shared API components
-├── ApiGateway/                 # Ocelot API Gateway
+├── ApiGateway/
+│   ├── OcelotApiGateway/       # Ocelot API Gateway
+│   ├── YARPGateway/            # YARP API Gateway
 └── SharedContracts/            # Shared DTOs and contracts
 ```
 
@@ -21,6 +23,8 @@ MicroservicesSample/
 - [.NET 9](https://dotnet.microsoft.com/download/dotnet/9.0) - Cross-platform development platform
 - [ASP.NET Core](https://docs.microsoft.com/aspnet/core) - Web framework
 - [Ocelot](https://github.com/ThreeMammals/Ocelot) - API Gateway
+- [YARP](https://github.com/dotnet/yarp) - API Gateway
+- [Resilience](https://www.nuget.org/packages/Microsoft.Extensions.Resilience) - Microsoft Resilience Extensions (Polly)
 
 ### Data & Validation
 
@@ -94,7 +98,8 @@ Single entry point for all client requests with request routing and composition.
    ```
 
 2. **Access the services**
-   - API Gateway: http://localhost:5165
+   - API Gateway (Ocelot): http://localhost:5165
+   - API Gateway (YARP): http://localhost:5166
    - Product Catalog Scalar: http://localhost:5106/scalar
    - Inventory Service Scalar: http://localhost:5105/scalar
 
@@ -103,7 +108,7 @@ Single entry point for all client requests with request routing and composition.
 ### Project Structure
 
 - **APIs/**: Contains individual microservices
-- **ApiGateway/**: Ocelot API Gateway configuration
+- **ApiGateway/**: Contains API Gateway projects
 - **SharedContracts/**: Shared DTOs and interfaces
 
 ### Key Features

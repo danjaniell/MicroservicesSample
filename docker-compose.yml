@@ -1,5 +1,5 @@
 services:
-  apigateway:
+  apigateway-ocelot:
     build:
       context: .
       dockerfile: ApiGateway/OcelotApiGateway/Dockerfile
@@ -7,6 +7,20 @@ services:
       - ASPNETCORE_ENVIRONMENT=Docker
     ports:
       - "5165:5165"
+    depends_on:
+      - inventoryservice
+      - productcatalogservice
+    networks:
+      - microservices-network
+
+  apigateway-yarp:
+    build:
+      context: .
+      dockerfile: ApiGateway/YARPGateway/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+    ports:
+      - "5166:5166"
     depends_on:
       - inventoryservice
       - productcatalogservice

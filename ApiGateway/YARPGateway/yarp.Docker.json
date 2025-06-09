@@ -1,0 +1,104 @@
+{
+  "ReverseProxy": {
+    "Routes": {
+      "inventories-route-base": {
+        "ClusterId": "inventories-cluster",
+        "RateLimiterPolicy": "fixed",
+        "OutputCachePolicy": "longCache",
+        "Match": {
+          "Path": "/api/inventories",
+          "Methods": [ "GET", "POST", "PUT" ]
+        },
+        "Transforms": [
+          { "PathPattern": "/api/v1/inventories" }
+        ],
+        "Order": 1
+      },
+      "inventories-route-with-id": {
+        "ClusterId": "inventories-cluster",
+        "RateLimiterPolicy": "fixed",
+        "OutputCachePolicy": "shortCache",
+        "Match": {
+          "Path": "/api/inventories/{productId}",
+          "Methods": [ "GET", "DELETE" ]
+        },
+        "Transforms": [
+          { "PathPattern": "/api/v1/products/{productId}" }
+        ],
+        "Order": 1
+      },
+      "products-route-base": {
+        "ClusterId": "products-cluster",
+        "RateLimiterPolicy": "fixed",
+        "OutputCachePolicy": "longCache",
+        "Match": {
+          "Path": "/api/products",
+          "Methods": [ "GET", "POST" ]
+        },
+        "Transforms": [
+          { "PathPattern": "/api/v1/products" }
+        ],
+        "Order": 1
+      },
+      "products-route-with-id": {
+        "ClusterId": "products-cluster",
+        "RateLimiterPolicy": "fixed",
+        "OutputCachePolicy": "shortCache",
+        "Match": {
+          "Path": "/api/products/{id}",
+          "Methods": [ "GET", "PUT", "DELETE" ]
+        },
+        "Transforms": [
+          { "PathPattern": "/api/v1/products/{id}" }
+        ],
+        "Order": 1
+      },
+      "health-inventory-route": {
+        "ClusterId": "inventories-cluster",
+        "Match": {
+          "Path": "/health/inventory",
+          "Methods": [ "GET" ]
+        },
+        "Transforms": [
+          { "PathPattern": "/health" }
+        ],
+        "Order": 2
+      },
+      "health-catalog-route": {
+        "ClusterId": "products-cluster",
+        "Match": {
+          "Path": "/health/catalog",
+          "Methods": [ "GET" ]
+        },
+        "Transforms": [
+          { "PathPattern": "/health" }
+        ],
+        "Order": 2
+      }
+    },
+    "Clusters": {
+      "inventories-cluster": {
+        "Destinations": {
+          "destination1": {
+            "Address": "http://inventoryservice:5105"
+          }
+        },
+        "HttpClient": {
+          "Service": "DownstreamClient"
+        },
+        "LoadBalancingPolicy": "LeastRequests"
+      },
+      "products-cluster": {
+        "Destinations": {
+          "destination1": {
+            "Address": "http://productcatalogservice:5106"
+          }
+        },
+        "HttpClient": {
+          "Service": "DownstreamClient"
+        },
+        "LoadBalancingPolicy": "LeastRequests"
+      }
+    }
+  }
+}

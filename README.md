@@ -38,32 +38,16 @@ MicroservicesSample/
 
 ## 🌐 Services Overview
 
-### 🏪 Product Catalog Service (Port 5106)
+### [🏪 Product Catalog Service (Port 5106)](https://github.com/danjaniell/InventoryService)
 
-Manages product information and catalog data.
+### [📦 Inventory Service (Port 5105)](https://github.com/danjaniell/ProductCatalogService)
 
-- `GET /api/v1/products` - List all products
-- `GET /api/v1/products/{id}` - Get product by ID
-- `POST /api/v1/products` - Create new product
-- `PUT /api/v1/products/{id}` - Update product
-- `DELETE /api/v1/products/{id}` - Delete product
-
-### 📦 Inventory Service (Port 5105)
-
-Manages product inventory and stock levels.
-
-- `GET /api/v1/inventories` - List all inventory items
-- `GET /api/v1/inventories/{productId}` - Get inventory by product ID
-- `POST /api/v1/inventories` - Create inventory record
-- `PUT /api/v1/inventories` - Update inventory
-- `DELETE /api/v1/inventories/{productId}` - Delete inventory record
-
-### 🌉 API Gateway (Port 5165)
+### 🌉 API Gateway (Port 5165/5166)
 
 Single entry point for all client requests with request routing and composition.
 
 - Routes requests to appropriate services
-- Handles load balancing
+- Handles load balancing, rate limiting
 - Provides API composition
 
 ## 🚀 Getting Started
